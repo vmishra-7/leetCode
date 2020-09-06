@@ -11,23 +11,19 @@
  */
 class Solution {
 public:
-   bool help(TreeNode* root, int ninf, int pinf) {
+   bool isBST(TreeNode *root, TreeNode *maxV, TreeNode* minV) {
+       if(root == NULL) {
+           return true;
+       }
+       if((maxV != NULL && root -> val <= maxV -> val) || (minV != NULL && root -> val >= minV -> val)) {
+           return false;
+       }
+       return isBST(root -> left, maxV, root) && isBST(root -> right, root, minV);
+    }
+    bool isValidBST(TreeNode* root) {
         if(root == NULL) {
             return true;
         }
-    
-        if((root -> val <= ninf) || root -> val >= pinf) {
-            return false;
-        }
-        
-        return (help(root -> left, ninf, root -> val) && help(root -> right, root -> val, pinf));
-        
-    }
-    
-    bool isValidBST(TreeNode* root) {
-        
-        if((root == NULL) || (root -> left == NULL && root -> right == NULL))
-            return true;      
-        return help(root, INT_MIN, INT_MAX);
+        return isBST(root, NULL, NULL);
     }
 };
