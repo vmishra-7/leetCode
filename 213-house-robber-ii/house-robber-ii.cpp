@@ -2,7 +2,6 @@ class Solution {
 public:
     int rob(vector<int> &nums, int si, int ei) {
         int n = ei - si;
-
         int *DP = new int[n + 1];
         DP[0] = nums[si];
         DP[1] = max(nums[si], nums[si + 1]);
