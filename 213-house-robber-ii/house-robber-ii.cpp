@@ -10,7 +10,6 @@ public:
             DP[i] = max(DP[i - 2] + nums[si + i], DP[i - 1]);
         }
         return DP[n];
-        return 0;
     }
     int rob(vector<int>& nums) {
         int n = nums.size();
