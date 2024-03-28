@@ -1,27 +1,27 @@
 class Solution {
 public:
-    int findTargetSumWays(vector<int>& nums, int i, int sum, int S, int **DP) {
+    int findTargetSumWays(vector<int> &nums, int i, int target, int **DP) {
         if(i == nums.size()) {
-            if(sum == S) {
+            if(target == 1000) {
                 return 1;
-            } else {
-                return 0;
             }
+            return 0;
         }
-        if(DP[i][sum] != -1) {
-            return DP[i][sum];
+        if(DP[i][target] != -1) {
+            return DP[i][target];
         }
-        DP[i][sum] = findTargetSumWays(nums, i + 1, sum + nums[i], S, DP) + findTargetSumWays(nums, i + 1, sum - nums[i], S, DP);
-        return DP[i][sum];
+        DP[i][target] = findTargetSumWays(nums, i + 1, target + nums[i], DP) + findTargetSumWays(nums, i + 1, target - nums[i], DP);
+        return DP[i][target];
     }
-    int findTargetSumWays(vector<int>& nums, int S) {
+    int findTargetSumWays(vector<int>& nums, int target) {
         int **DP = new int*[nums.size() + 1];
         for(int i = 0; i <= nums.size(); i++) {
-            DP[i] = new int[2001];
-            for(int j = 0; j <= 2000; j++) {
+            DP[i] = new int[3001];
+            for(int j = 0; j <= 3000; j++) {
                 DP[i][j] = -1;
             }
         }
-        return findTargetSumWays(nums, 0, 1000, S + 1000, DP);
+        return findTargetSumWays(nums, 0, target + 1000, DP);
+        return 1;
     }
 };
