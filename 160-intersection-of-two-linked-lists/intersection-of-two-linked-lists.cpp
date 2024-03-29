@@ -8,18 +8,18 @@ public:
         if(headA == headB) {
             return headA;
         }
-        ListNode *head = headA;
-        while(head -> next != NULL) {
-            head = head -> next;
-        }
-        ListNode *head1 = headB;
+        ListNode *head1 = headA;
         while(head1 -> next != NULL) {
             head1 = head1 -> next;
         }
-        if(head != head1) {
+        ListNode *head2 = headB;
+        while(head2 -> next != NULL) {
+            head2 = head2 -> next;
+        }
+        if(head1 != head2) {
             return NULL;
         }
-        head -> next = headA;
+        head1 -> next = headA;
         ListNode *slow = headB;
         ListNode *fast = headB;
         while(fast != NULL && fast -> next != NULL) {
@@ -32,11 +32,11 @@ public:
                     slow = slow -> next;
                     fast = fast -> next;
                 }
-                head -> next = NULL;
+                head1 -> next = NULL;
                 return slow;
             }
         }
-        head -> next = NULL;
+        head1 -> next = NULL;
         return NULL;
     }
 };
