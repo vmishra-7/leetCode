@@ -1,16 +1,16 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int N = matrix.size();
-        int M = matrix[0].size();
-        int r = N - 1, c = 0;
-        while(r >= 0 && c < M) {
-            if(matrix[r][c] == target) {
+        int i = matrix.size() - 1, j = 0;
+        while(i >= 0 && j < matrix[0].size()) {
+            if(matrix[i][j] == target) {
                 return true;
             }
-            if(matrix[r][c] > target) {
-                r--;
-            } else c++;
+            if(matrix[i][j] > target) {
+                i--;
+            } else {
+                j++;
+            }
         }
         return false;
     }
