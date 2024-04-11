@@ -1,26 +1,27 @@
 class Solution {
 public:
-    int search(vector<int>& nums, int si, int ei, int target) {
-        if(si > ei) {
-             return -1;
-        }
-        int mid = (si + ei) / 2;
-        if(target == nums[mid]) {
-            return mid;
-        }
-        if(nums[si] <= nums[mid]) {
-            if(target >= nums[si] && target < nums[mid]) {
-                return search(nums, si, mid - 1, target);
-            } else {
-                return search(nums, mid + 1, ei, target);
+    int search(vector<int>& arr, int si, int ei, int target) {
+        int l = si, r = ei;
+        while(l <= r) {
+            int mid = (l + r) / 2;
+            if(arr[mid] == target) {
+                return mid;
             }
-        } else if(nums[mid] <= nums[ei]) {
-            if(target > nums[mid] && target <= nums[ei]) {
-                return search(nums, mid + 1, ei, target);
-            } else {
-                return search(nums, si, mid - 1, target);
+            if(arr[l] <= arr[mid]) {
+                if(target >= arr[l] && arr[mid] > target) {
+                    r = mid - 1;
+                } else {
+                    l = mid + 1;
+                }
+            } else if(arr[mid] <= arr[r]){
+                if(target > arr[mid] && target <= arr[r]) {
+                    l = mid + 1;
+                } else {
+                    r = mid - 1;
+                }
             }
-        } return -1;
+        }
+        return -1;
     }
     int search(vector<int>& nums, int target) {
         return search(nums, 0, nums.size() - 1, target);
