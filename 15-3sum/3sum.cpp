@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         sort(nums.begin(), nums.end());
-        set<vector<int>> out;
+        vector<vector<int>> out;
         int i = 0;
         while(i < nums.size() - 2) {
             int j = i + 1;
@@ -10,8 +10,14 @@ public:
             while(j < k) {
                 int tempSum = nums[i] + nums[j] + nums[k];
                 if(tempSum == 0) {
-                    out.insert({nums[i], nums[j], nums[k]});
+                    out.push_back({nums[i], nums[j], nums[k]});
                     j++, k--;
+                    while(j < k && nums[j] == nums[j - 1]) {
+                        j++;
+                    }
+                    while(j < k && nums[k] == nums[k + 1]) {
+                        k--;
+                    }
                 } else if(tempSum > 0) {
                     k--;
                 } else {
@@ -19,12 +25,10 @@ public:
                 }
             }
             i++;
+            while(i < nums.size() - 2 && nums[i] == nums[i - 1]) {
+                i++;
+            }
         }
-        set<vector<int>>:: iterator it;
-        vector<vector<int>> res;
-        for(it = out.begin(); it != out.end(); it++) {
-            res.push_back(*it);
-        }
-        return res;
+        return out;
     }
 };
