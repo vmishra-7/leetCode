@@ -1,1 +1,1 @@
-# CP1_CIPHERSCHOOLS
+# CP LeetCode
