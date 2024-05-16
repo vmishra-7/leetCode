@@ -9,6 +9,6 @@
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        *node = *(node -> next);
+        *node = *(node -> next); //Note to self: ll is just block of memory in heap, don't confuse them with pointer itself
     }
 };
